@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+ext {
+    xmlApisVersion = "2.0.2"
+    assertJVersion = "3.24.2"
+    jUnit5Version = "5.9.3"
+    mockitoVersion = "5.4.0"
+    mockitoInlineVersion = "5.2.0"
+    byteBuddyVersion = "1.14.5"
+    junitPlatformVersion = "1.9.3"
+    jacocoVersion = "0.8.9"
+    reflectionsVersion = "0.10.2"
+}
+
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.mockito:mockito-core:${mockitoVersion}"
+    implementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    implementation "org.mockito:mockito-inline:${mockitoInlineVersion}"
+    implementation "org.junit.jupiter:junit-jupiter-api:${jUnit5Version}"
+    implementation "org.junit.jupiter:junit-jupiter-params:${jUnit5Version}"
+    implementation "org.junit.jupiter:junit-jupiter-engine:${jUnit5Version}"
+    implementation "org.junit.vintage:junit-vintage-engine:${jUnit5Version}"
+    implementation "org.junit.platform:junit-platform-launcher:${junitPlatformVersion}"
+    implementation "org.junit.platform:junit-platform-engine:${junitPlatformVersion}"
+    implementation "org.junit.platform:junit-platform-commons:${junitPlatformVersion}"
+
+}
+
+jacoco {
+    toolVersion = "${jacocoVersion}"
+    reportsDirectory = layout.buildDirectory.dir("jacoco")
+}
+
+test {
+    useJUnitPlatform()
+}
